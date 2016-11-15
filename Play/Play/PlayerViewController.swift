@@ -25,6 +25,8 @@ class PlayerViewController: UIViewController {
     var artistLabel: UILabel!
     var titleLabel: UILabel!
     var didPlay: [Track]!
+    
+    var curPlayer: AVPlayer!
 
     var paused = true
 
@@ -134,8 +136,20 @@ class PlayerViewController: UIViewController {
         let clientID = NSDictionary(contentsOfFile: path!)?.value(forKey: "client_id") as! String
         let track = tracks[currentIndex]
         let url = URL(string: "https://api.soundcloud.com/tracks/\(track.id as Int)/stream?client_id=\(clientID)")!
-        // FILL ME IN
-
+        if paused {
+            if player.items().count == 0 {
+                let playerItem = AVPlayerItem(url: url)
+                player.insert(playerItem, after: nil)
+                
+            }
+            player.play()
+            paused = false
+            sender.isSelected = true
+        } else {
+            player.pause()
+            paused = true
+            sender.isSelected = false
+        }
     }
 
     /*
@@ -145,7 +159,15 @@ class PlayerViewController: UIViewController {
      * Remember to update the currentIndex
      */
     func nextTrackTapped(_ sender: UIButton) {
-        // FILL ME IN
+        if currentIndex + 1 < tracks.count {
+            currentIndex! += 1
+            player.removeAllItems()
+            loadTrackElements()
+            if !paused {
+                paused = true
+                playOrPauseTrack(playPauseButton)
+            }
+        }
     }
 
     /*
@@ -159,7 +181,29 @@ class PlayerViewController: UIViewController {
      */
 
     func previousTrackTapped(_ sender: UIButton) {
-        // FILL ME IN
+        if player.items().count != 0 {
+            if CMTimeGetSeconds(player.items()[0].currentTime()) <= 3 {
+                if currentIndex! - 1 >= 0 {
+                    currentIndex! -= 1
+                    player.removeAllItems()
+                    loadTrackElements()
+                    if !paused {
+                        paused = true
+                        playOrPauseTrack(playPauseButton)
+                    }
+                }
+            } else {
+                let timeZero = CMTimeMakeWithSeconds(0.0, 1)
+                player.items()[0].seek(to: timeZero)
+            }
+        } else if currentIndex! - 1 >= 0 {
+            currentIndex! -= 1
+            loadTrackElements()
+            if !paused {
+                paused = true
+                playOrPauseTrack(playPauseButton)
+            }
+        }
     }
 
 

@@ -135,6 +135,7 @@
 				TargetAttributes = {
 					3AA8F0031C097DB8005ACCBD = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = V355836XS2;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -284,9 +285,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V355836XS2;
 				INFOPLIST_FILE = Play/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs198-1.Play";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samsteady;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -296,9 +298,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V355836XS2;
 				INFOPLIST_FILE = Play/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "cs198-1.Play";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samsteady;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
